@@ -1,0 +1,29 @@
+//
+//  TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesModel.h
+//  YBModelFileDemo
+//
+//  Created by indulgeIn on 2019/03/21.
+//  Copyright © 2019 indulgeIn. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesLargeModel.h"
+#import "TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesMediumModel.h"
+#import "TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesOrigModel.h"
+#import "TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesSmallModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesModel : NSObject <NSCopying, NSCoding>
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesLargeModel *large;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesMediumModel *medium;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesOrigModel *orig;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651551907106783232RetweetedStatusExtendedEntitiesMediaEleFeaturesSmallModel *small;
+
+@end
+
+NS_ASSUME_NONNULL_END

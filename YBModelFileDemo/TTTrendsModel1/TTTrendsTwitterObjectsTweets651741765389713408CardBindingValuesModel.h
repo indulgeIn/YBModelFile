@@ -1,0 +1,62 @@
+//
+//  TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesModel.h
+//  YBModelFileDemo
+//
+//  Created by indulgeIn on 2019/03/21.
+//  Copyright © 2019 indulgeIn. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppIdModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppPriceCurrencyModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppUrlModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppStarRatingModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppNameModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppPriceAmountModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesDomainModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppNumRatingsModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesVanityUrlModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesTitleModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesCardUrlModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppIsFreeModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppUrlResolvedModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesDescriptionModel.h"
+#import "TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesSiteModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesModel : NSObject <NSCopying, NSCoding>
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppIdModel *app_id;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppPriceCurrencyModel *app_price_currency;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppUrlModel *app_url;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppStarRatingModel *app_star_rating;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppNameModel *app_name;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppPriceAmountModel *app_price_amount;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesDomainModel *domain;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppNumRatingsModel *app_num_ratings;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesVanityUrlModel *vanity_url;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesTitleModel *title;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesCardUrlModel *card_url;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppIsFreeModel *app_is_free;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesAppUrlResolvedModel *app_url_resolved;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesDescriptionModel *description1;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651741765389713408CardBindingValuesSiteModel *site;
+
+@end
+
+NS_ASSUME_NONNULL_END

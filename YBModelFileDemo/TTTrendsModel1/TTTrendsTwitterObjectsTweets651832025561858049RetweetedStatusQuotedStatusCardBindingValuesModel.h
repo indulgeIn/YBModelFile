@@ -1,0 +1,35 @@
+//
+//  TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesModel.h
+//  YBModelFileDemo
+//
+//  Created by indulgeIn on 2019/03/21.
+//  Copyright © 2019 indulgeIn. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesVanityUrlModel.h"
+#import "TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesSiteModel.h"
+#import "TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesTitleModel.h"
+#import "TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesCardUrlModel.h"
+#import "TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesDomainModel.h"
+#import "TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesDescriptionModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesModel : NSObject <NSCopying, NSCoding>
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesVanityUrlModel *vanity_url;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesSiteModel *site;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesTitleModel *title;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesCardUrlModel *card_url;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesDomainModel *domain;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651832025561858049RetweetedStatusQuotedStatusCardBindingValuesDescriptionModel *description1;
+
+@end
+
+NS_ASSUME_NONNULL_END

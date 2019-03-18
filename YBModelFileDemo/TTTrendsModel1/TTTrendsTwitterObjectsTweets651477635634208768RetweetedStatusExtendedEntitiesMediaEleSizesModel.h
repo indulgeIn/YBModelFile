@@ -1,0 +1,29 @@
+//
+//  TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesModel.h
+//  YBModelFileDemo
+//
+//  Created by indulgeIn on 2019/03/21.
+//  Copyright © 2019 indulgeIn. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesLargeModel.h"
+#import "TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesMediumModel.h"
+#import "TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesThumbModel.h"
+#import "TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesSmallModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesModel : NSObject <NSCopying, NSCoding>
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesLargeModel *large;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesMediumModel *medium;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesThumbModel *thumb;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651477635634208768RetweetedStatusExtendedEntitiesMediaEleSizesSmallModel *small;
+
+@end
+
+NS_ASSUME_NONNULL_END

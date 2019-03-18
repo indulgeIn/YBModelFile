@@ -1,0 +1,38 @@
+//
+//  TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesModel.h
+//  YBModelFileDemo
+//
+//  Created by indulgeIn on 2019/03/21.
+//  Copyright © 2019 indulgeIn. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesSiteModel.h"
+#import "TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesDomainModel.h"
+#import "TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesThumbnailImageModel.h"
+#import "TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesDescriptionModel.h"
+#import "TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesTitleModel.h"
+#import "TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesVanityUrlModel.h"
+#import "TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesCardUrlModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesModel : NSObject <NSCopying, NSCoding>
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesSiteModel *site;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesDomainModel *domain;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesThumbnailImageModel *thumbnail_image;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesDescriptionModel *description1;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesTitleModel *title;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesVanityUrlModel *vanity_url;
+
+@property (nonatomic, strong) TTTrendsTwitterObjectsTweets651958496498352128RetweetedStatusCardBindingValuesCardUrlModel *card_url;
+
+@end
+
+NS_ASSUME_NONNULL_END

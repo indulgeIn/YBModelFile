@@ -1,0 +1,20 @@
+//
+//  TTTrendsTwitterObjectsTweets652157560540164096EntitiesMediaEleFeaturesMediumModel.h
+//  YBModelFileDemo
+//
+//  Created by indulgeIn on 2019/03/21.
+//  Copyright © 2019 indulgeIn. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "TTTrendsTwitterObjectsTweets652157560540164096EntitiesMediaEleFeaturesMediumFacesEleModel.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface TTTrendsTwitterObjectsTweets652157560540164096EntitiesMediaEleFeaturesMediumModel : NSObject <NSCopying, NSCoding>
+
+@property (nonatomic, copy) NSArray<TTTrendsTwitterObjectsTweets652157560540164096EntitiesMediaEleFeaturesMediumFacesEleModel *> *faces;
+
+@end
+
+NS_ASSUME_NONNULL_END
