@@ -30,7 +30,7 @@
         case YBMFNodeTypeClass:
             return [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *", node.className];
         case YBMFNodeTypeNSMutableArray: {
-            YBMFNode *child = node.children[[YBMFConfig shareConfig].containerElementName];
+            YBMFNode *child = node.children[YBMFNodeArrayElementKey];
             if (child && child.className && child.className.length > 0) {
                 return [NSString stringWithFormat:@"@property (nonatomic, strong) NSMutableArray<%@ *> *", child.className];
             } else {
@@ -38,7 +38,7 @@
             }
         }
         case YBMFNodeTypeNSArray: {
-            YBMFNode *child = node.children[[YBMFConfig shareConfig].containerElementName];
+            YBMFNode *child = node.children[YBMFNodeArrayElementKey];
             if (child && child.className && child.className.length > 0) {
                 return [NSString stringWithFormat:@"@property (nonatomic, copy) NSArray<%@ *> *", child.className];
             } else {

@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString * const YBMFNodeArrayElementKey;
+
 typedef NS_ENUM(NSInteger, YBMFNodeType) {
     YBMFNodeTypeUnknown,
     YBMFNodeTypeNSString,

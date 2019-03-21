@@ -24,7 +24,7 @@
 
 + (void)createFileWithName:(NSString *)name data:(id)data path:(nullable NSString *)path {
 #if DEBUG
-    if (TARGET_OS_IPHONE) {
+    if (!TARGET_IPHONE_SIMULATOR) {
         NSAssert(0, @"请用模拟器运行");
     }
     [self _createFileWithName:name data:data path:path];
@@ -89,7 +89,7 @@ fail:
             
             YBMFNode *child = [self buildTreeWithParentClassName:node.className key:_key value:_value];
             if (child.type == YBMFNodeTypeNSArray) {
-                YBMFNode *ele = child.children[[YBMFConfig shareConfig].containerElementName];
+                YBMFNode *ele = child.children[YBMFNodeArrayElementKey];
                 //添加容器元素映射
                 if (ele && ele.type == YBMFNodeTypeClass) {
                     node.containerMapper[n_key] = ele.className;
@@ -107,9 +107,8 @@ fail:
         }
         
         if (((NSArray *)value).count > 0) {
-            NSString *expectName = [[YBMFConfig shareConfig].nameHander ybmf_classNameWithPrefix:parentClassName suffix:[YBMFConfig shareConfig].fileSuffix key:key];
-            YBMFNode *child = [self buildTreeWithParentClassName:expectName key:[YBMFConfig shareConfig].containerElementName value:((NSArray *)value).firstObject];
-            node.children[[YBMFConfig shareConfig].containerElementName] = child;
+            YBMFNode *child = [self buildTreeWithParentClassName:parentClassName key:key value:((NSArray *)value).firstObject];
+            node.children[YBMFNodeArrayElementKey] = child;
         }
         
     } else if ([value isKindOfClass:NSString.class]) {
@@ -232,7 +231,7 @@ fail:
         if (obj.type == YBMFNodeTypeClass) {
             [self dfs_creatFilesWithDirectoryPath:path node:obj];
         } else if (obj.type == YBMFNodeTypeNSArray || obj.type == YBMFNodeTypeNSMutableArray) {
-            YBMFNode *child = obj.children[[YBMFConfig shareConfig].containerElementName];
+            YBMFNode *child = obj.children[YBMFNodeArrayElementKey];
             if (child && child.type == YBMFNodeTypeClass) {
                 [self dfs_creatFilesWithDirectoryPath:path node:child];
             }
@@ -247,7 +246,7 @@ fail:
         if (obj.type == YBMFNodeTypeClass) {
             [self dfs_mergeWithCodeInFileH:codeInFileH codeInFileM:codeInFileM node:obj];
         } else if (obj.type == YBMFNodeTypeNSArray || obj.type == YBMFNodeTypeNSMutableArray) {
-            YBMFNode *child = obj.children[[YBMFConfig shareConfig].containerElementName];
+            YBMFNode *child = obj.children[YBMFNodeArrayElementKey];
             if (child && child.type == YBMFNodeTypeClass) {
                 [self dfs_mergeWithCodeInFileH:codeInFileH codeInFileM:codeInFileM node:child];
             }

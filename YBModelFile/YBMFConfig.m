@@ -33,7 +33,6 @@
         self.framework = YBMFFrameworkYY;
         self.needCopying = YES;
         self.needCoding = YES;
-        self.containerElementName = @"Ele";
         self.nameHander = YBMFNameHandler.new;
         self.fileNoteHander = YBMFFileNoteHandler.new;
         self.fileHHandler = YBMFFileHHandler.new;

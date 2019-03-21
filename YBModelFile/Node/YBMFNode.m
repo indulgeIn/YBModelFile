@@ -9,6 +9,8 @@
 #import "YBMFNode.h"
 #import "YBMFConfig.h"
 
+NSString * const YBMFNodeArrayElementKey = @"kYBMFNodeArrayElementName";
+
 @implementation YBMFNode
 
 #pragma mark - setter

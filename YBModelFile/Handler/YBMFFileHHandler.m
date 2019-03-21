@@ -50,7 +50,7 @@
     [node.children enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, YBMFNode * _Nonnull obj, BOOL * _Nonnull stop) {
         NSString *customClassName;
         if (obj.type == YBMFNodeTypeNSArray) {
-            YBMFNode *child = obj.children[[YBMFConfig shareConfig].containerElementName];
+            YBMFNode *child = obj.children[YBMFNodeArrayElementKey];
             if (child && child.type == YBMFNodeTypeClass) {
                 customClassName = child.className;
             }

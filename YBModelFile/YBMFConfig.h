@@ -63,9 +63,6 @@ typedef NS_ENUM(NSInteger, YBMFFilePartitionMode) {
 /** 是否需要实现 NSCoding 协议 (默认为 YES) */
 @property (nonatomic, assign) BOOL needCoding;
 
-/** 容器元素的类拓展名 (默认为 Ele) */
-@property (nonatomic, strong) NSString *containerElementName;
-
 /** 数据模型类的统一基类 (默认为 NSObject) */
 @property (nonatomic, strong) Class baseClass;
 
