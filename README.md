@@ -92,6 +92,22 @@ NSCoding 和 NSCopying 协议是否实现可以指定：
 [YBMFConfig shareConfig].filePartitionMode = YBMFFilePartitionModeApart;
 ```
 
+### 处理算法自定义
+
+对于工具中的算法，都是通过一些类来处理，默认有实现，如果需要自定义，只需要实现对应的协议并且赋值给配置单例：
+```objc
+/** 名字处理器 */
+@property (nonatomic, strong) id<YBMFNameHandler> nameHander;
+/** 文件头部注解处理器 */
+@property (nonatomic, strong) id<YBMFFileNoteHandler> fileNoteHander;
+/** .h文件代码处理器 */
+@property (nonatomic, strong) id<YBMFFileHHandler> fileHHandler;
+/** .m文件代码处理器 */
+@property (nonatomic, strong) id<YBMFFileMHandler> fileMHandler;
+/** 节点作为父节点的属性时 Code 格式处理器 */
+@property (nonatomic, strong) id<YBMFCodeForParentHandler> codeForParentHandler;
+```
+
 
 # TODO
 
