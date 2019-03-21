@@ -1,4 +1,4 @@
-# YBModelFile (Latest version : 1.0)
+# YBModelFile (Latest version : 1.0.1)
 
 iOS 效率工具：自动生成 Model 文件（数据模型） / iOS efficiency tool : create data model files automatically
 
