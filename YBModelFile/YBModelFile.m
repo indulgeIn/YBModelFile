@@ -24,6 +24,9 @@
 
 + (void)createFileWithName:(NSString *)name data:(id)data path:(nullable NSString *)path {
 #if DEBUG
+    if (TARGET_OS_IPHONE) {
+        NSAssert(0, @"请用模拟器运行");
+    }
     [self _createFileWithName:name data:data path:path];
 #endif
 }
@@ -145,8 +148,9 @@ fail:
     if (!path) {
         //找到桌面路径
         NSString *bundle = [[NSBundle mainBundle] resourcePath];
+        if (!bundle) NSAssert(0, @"自动获取桌面路径失败，请尝试添加文件路径");
         path = [[bundle substringToIndex:[bundle rangeOfString:@"Library"].location] stringByAppendingFormat:@"Desktop"];
-        if (!path) NSAssert(0, @"自动获取桌面路径失败，请尝试添加文件路径");;
+        if (!path) NSAssert(0, @"自动获取桌面路径失败，请尝试添加文件路径");
     }
     
     //创建一个工具工作空间

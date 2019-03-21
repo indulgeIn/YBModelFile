@@ -4,6 +4,7 @@ iOS 效率工具：自动生成 Model 文件（数据模型） / iOS efficiency 
 
 技术原理博客：[iOS 效率工具：自动生成 Model 文件](https://www.jianshu.com/p/f30cf05054c6)
 
+注意：仅在模拟器下运行有效
 
 ## 特性
 
