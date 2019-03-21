@@ -2,7 +2,7 @@
 
 iOS 效率工具：自动生成 Model 文件（数据模型） / iOS efficiency tool : create data model files automatically
 
-技术原理博客：TODO
+技术原理博客：[iOS 效率工具：自动生成 Model 文件](https://www.jianshu.com/p/f30cf05054c6)
 
 
 ## 特性
