@@ -166,7 +166,7 @@ fail:
     if (exist && cover) return directoryPath;
     NSUInteger suffix = 0;
     while (exist) {
-        directoryPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%lu", directoryName, ++suffix]];
+        directoryPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%lu", directoryName, (unsigned long)++suffix]];
         exist = [[NSFileManager defaultManager] fileExistsAtPath:directoryPath];
     }
     NSError *error;

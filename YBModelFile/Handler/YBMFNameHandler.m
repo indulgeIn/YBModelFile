@@ -192,7 +192,7 @@ static NSSet<NSString *> *YBClassVarsExceptPrefix(Class cls) {
     NSSet *illegalVars = YBClassVarsExceptPrefix([YBMFConfig shareConfig].baseClass);
     while ([node.children.allKeys containsObject:tmp] || [illegalVars containsObject:tmp]) {
         tmp = keyStr.copy;
-        tmp = [tmp stringByAppendingString:[NSString stringWithFormat:@"%lu", ++suf]];
+        tmp = [tmp stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)++suf]];
     }
     return tmp;
 }
