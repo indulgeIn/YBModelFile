@@ -1,4 +1,9 @@
-# YBModelFile (Latest version : 1.0.1)
+# YBModelFile 
+
+[![Cocoapods](https://img.shields.io/cocoapods/v/YBModelFile.svg)](https://cocoapods.org/pods/YBModelFile)&nbsp;
+[![Cocoapods](https://img.shields.io/cocoapods/p/YBModelFile.svg)](https://github.com/indulgeIn/YBModelFile)&nbsp;
+[![License](https://img.shields.io/github/license/indulgeIn/YBModelFile.svg)](https://github.com/indulgeIn/YBModelFile)&nbsp;
+
 
 iOS 效率工具：自动生成 Model 文件（数据模型） / iOS efficiency tool : create data model files automatically
 
