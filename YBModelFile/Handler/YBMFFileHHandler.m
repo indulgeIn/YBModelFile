@@ -7,7 +7,7 @@
 //
 
 #import "YBMFFileHHandler.h"
-#import "YBMFConfig.h"
+#import "NSObject+YBMFConfig.h"
 
 @interface YBMFFileHHandler ()
 @property (nonatomic, strong) NSDictionary *frameworkMapper;
@@ -33,7 +33,7 @@
     NSMutableString *importInfo = [NSMutableString string];
     
     //基类的依赖
-    Class baseClass = [YBMFConfig shareConfig].baseClass;
+    Class baseClass = self.ybmf_config.baseClass;
     NSBundle *baseClassBundle = [NSBundle bundleForClass:baseClass];
     if (baseClassBundle == [NSBundle mainBundle]) { //自定义类
         [importInfo appendString:[NSString stringWithFormat:@"#import \"%@.h\"\n", NSStringFromClass(baseClass)]];
@@ -68,17 +68,17 @@
 - (NSString *)ybmf_codeInfoWithNode:(YBMFNode *)node {
     NSMutableString *codeInfo = [NSMutableString string];
     
-    [codeInfo appendString:[NSString stringWithFormat:@"@interface %@ : %@", node.className, NSStringFromClass([YBMFConfig shareConfig].baseClass)]];
+    [codeInfo appendString:[NSString stringWithFormat:@"@interface %@ : %@", node.className, NSStringFromClass(self.ybmf_config.baseClass)]];
     
     NSMutableString *protocolStr = [NSMutableString string];
-    if ([YBMFConfig shareConfig].needCopying) {
+    if (self.ybmf_config.needCopying) {
         if (protocolStr.length == 0) {
             [protocolStr appendString:@" <NSCopying"];
         } else {
             [protocolStr appendString:@", NSCopying"];
         }
     }
-    if ([YBMFConfig shareConfig].needCoding) {
+    if (self.ybmf_config.needCoding) {
         if (protocolStr.length == 0) {
             [protocolStr appendString:@" <NSCoding"];
         } else {
@@ -94,7 +94,9 @@
     
     if (self.ybmf_skipLine) [codeInfo appendString:@"\n"];
     [node.children enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, YBMFNode * _Nonnull obj, BOOL * _Nonnull stop) {
-        [codeInfo appendString:[NSString stringWithFormat:@"%@%@;", obj.codeForParent, key]];
+        NSString *codeForParent = [self.ybmf_config.codeForParentHandler ybmf_codeForParentWithNode:obj];
+        
+        [codeInfo appendString:[NSString stringWithFormat:@"%@%@;", codeForParent, key]];
         [codeInfo appendString:@"\n"];
         if (self.ybmf_skipLine) [codeInfo appendString:@"\n"];
     }];

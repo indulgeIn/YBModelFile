@@ -39,11 +39,18 @@ typedef NS_ENUM(NSInteger, YBMFFilePartitionMode) {
 @interface YBMFConfig : NSObject
 
 /**
- 唯一有效实例，自定义工具
+ 全局配置单例（优先级低于单独配置的 YBMFConfig）
 
  @return YBMFConfig
  */
 + (instancetype)shareConfig;
+
+/**
+ 默认初始化方法
+
+ @return YBMFConfig
+ */
++ (instancetype)defaultConfig;
 
 /** 文件名的后缀 (默认为 Model) */
 @property (nonatomic, copy) NSString *fileSuffix;

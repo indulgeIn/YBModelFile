@@ -12,6 +12,7 @@
 
 @interface YBModelFile ()
 @property (nonatomic, strong) YBMFNode *rootNode;
+@property (nonatomic, strong) YBMFConfig *config;
 @end
 
 @implementation YBModelFile
@@ -19,19 +20,23 @@
 #pragma mark - public
 
 + (void)createFileWithName:(NSString *)name data:(id)data {
-    [self createFileWithName:name data:data path:nil];
+    [self createFileWithName:name data:data config:nil path:nil];
 }
 
-+ (void)createFileWithName:(NSString *)name data:(id)data path:(nullable NSString *)path {
++ (void)createFileWithName:(NSString *)name data:(id)data config:(YBMFConfig *)config {
+    [self createFileWithName:name data:data config:config path:nil];
+}
+
++ (void)createFileWithName:(NSString *)name data:(id)data config:(nullable YBMFConfig *)config path:(nullable NSString *)path {
 #if DEBUG
     if (!TARGET_IPHONE_SIMULATOR) {
         NSAssert(0, @"请用模拟器运行");
     }
-    [self _createFileWithName:name data:data path:path];
+    [self private_createFileWithName:name data:data config:config path:path];
 #endif
 }
 
-+ (void)_createFileWithName:(NSString *)name data:(id)data path:(nullable NSString *)path {
++ (void)private_createFileWithName:(NSString *)name data:(id)data config:(nullable YBMFConfig *)config path:(nullable NSString *)path {
     if (!name || !data) goto fail;
     
     if ([data isKindOfClass:NSString.class]) {
@@ -53,6 +58,7 @@
     }
     if ([data isKindOfClass:NSDictionary.class]) {
         YBModelFile *mfile = YBModelFile.new;
+        mfile.config = config ?: [YBMFConfig shareConfig];
         mfile.rootNode = [mfile buildTreeWithParentClassName:nil key:name value:data];
         [mfile creatWithPath:path];
     } else {
@@ -64,6 +70,11 @@ fail:
     NSAssert(0, @"json数据无效");
 }
 
+//test
+- (void)dealloc {
+    NSLog(@"释放：%@", self);
+}
+
 #pragma mark - build tree
 
 - (YBMFNode *)buildTreeWithParentClassName:(NSString *)parentClassName key:(id)key value:(id)value {
@@ -73,15 +84,15 @@ fail:
     
     YBMFNode *node = YBMFNode.new;
     
-    YBMFIgnoreType ignoreType = [YBMFConfig shareConfig].ignoreType;
+    YBMFIgnoreType ignoreType = self.config.ignoreType;
     
     if ([value isKindOfClass:NSDictionary.class]) {
         
         node.type = YBMFNodeTypeClass;
-        node.className = [[YBMFConfig shareConfig].nameHander ybmf_classNameWithPrefix:parentClassName suffix:[YBMFConfig shareConfig].fileSuffix key:key];
+        node.className = [self.config.nameHander ybmf_classNameWithPrefix:parentClassName suffix:self.config.fileSuffix key:key];
         [((NSDictionary *)value) enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull _key, id  _Nonnull _value, BOOL * _Nonnull stop) {
             
-            NSString *n_key = [[YBMFConfig shareConfig].nameHander ybmf_propertyNameWithKey:_key node:node];
+            NSString *n_key = [self.config.nameHander ybmf_propertyNameWithKey:_key existKeys:node.children.allKeys];
             //添加属性映射
             if (![n_key isEqualToString:[NSString stringWithFormat:@"%@", _key]]) {
                 node.propertyMapper[n_key] = [NSString stringWithFormat:@"%@", _key];
@@ -191,7 +202,7 @@ fail:
 }
 
 - (void)creatFilesWithDirectoryPath:(NSString *)path {
-    switch ([YBMFConfig shareConfig].filePartitionMode) {
+    switch (self.config.filePartitionMode) {
         case YBMFFilePartitionModeApart:
             [self dfs_creatFilesWithDirectoryPath:path node:self.rootNode];
             break;
@@ -204,17 +215,17 @@ fail:
             NSMutableString *codeInFileM = [NSMutableString string];
             [self dfs_mergeWithCodeInFileH:codeInFileH codeInFileM:codeInFileM node:self.rootNode];
             
-            [allInfoInFileH appendString:self.rootNode.noteInFileH];
+            [allInfoInFileH appendString:[self.config.fileNoteHander ybmf_fileNoteWithFileName:self.rootNode.className fileType:YBMFFileNoteTypeH]];
             [allInfoInFileH appendString:@"\n"];
-            [allInfoInFileH appendString:self.rootNode.importInfoWithoutPropertyInFileH];
+            [allInfoInFileH appendString:[self.config.fileHHandler ybmf_importInfoWithNode:self.rootNode withoutProperty:YES]];
             [allInfoInFileH appendString:@"\n"];
             [allInfoInFileH appendString:@"NS_ASSUME_NONNULL_BEGIN\n\n\n"];
             [allInfoInFileH appendString:codeInFileH];
             [allInfoInFileH appendString:@"NS_ASSUME_NONNULL_END\n"];
             
-            [allInfoInFileM appendString:self.rootNode.noteInFileM];
+            [allInfoInFileM appendString:[self.config.fileNoteHander ybmf_fileNoteWithFileName:self.rootNode.className fileType:YBMFFileNoteTypeM]];
             [allInfoInFileM appendString:@"\n"];
-            [allInfoInFileM appendString:self.rootNode.importInfoInFileM];
+            [allInfoInFileM appendString:[self.config.fileMHandler ybmf_importInfoWithNode:self.rootNode]];
             [allInfoInFileM appendString:@"\n\n"];
             [allInfoInFileM appendString:codeInFileM];
             
@@ -237,8 +248,8 @@ fail:
             }
         }
     }];
-    [self creatFileWithPath:path fileName:[NSString stringWithFormat:@"%@.h", node.className] fileCode:node.allInfoFileH];
-    [self creatFileWithPath:path fileName:[NSString stringWithFormat:@"%@.m", node.className] fileCode:node.allInfoFileM];
+    [self creatFileWithPath:path fileName:[NSString stringWithFormat:@"%@.h", node.className] fileCode:[self allInfoFileH:node]];
+    [self creatFileWithPath:path fileName:[NSString stringWithFormat:@"%@.m", node.className] fileCode:[self allInfoFileM:node]];
 }
 
 - (void)dfs_mergeWithCodeInFileH:(NSMutableString *)codeInFileH codeInFileM:(NSMutableString *)codeInFileM node:(YBMFNode *)node {
@@ -252,10 +263,32 @@ fail:
             }
         }
     }];
-    [codeInFileH appendString:node.codeInfoInFileH];
+    [codeInFileH appendString:[self.config.fileHHandler ybmf_codeInfoWithNode:node]];
     [codeInFileH appendString:@"\n\n"];
-    [codeInFileM appendString:node.codeInfoInFileM];
+    [codeInFileM appendString:[self.config.fileMHandler ybmf_codeInfoWithNode:node]];
     [codeInFileM appendString:@"\n\n"];
+}
+
+#pragma mark - tool
+
+- (NSString *)allInfoFileH:(YBMFNode *)node {
+    NSString *noteInFileH = [self.config.fileNoteHander ybmf_fileNoteWithFileName:node.className fileType:YBMFFileNoteTypeH];
+    NSString *importInfoInFileH = [self.config.fileHHandler ybmf_importInfoWithNode:node withoutProperty:NO];
+    NSString *codeInfoInFileH = [self.config.fileHHandler ybmf_codeInfoWithNode:node];
+    NSString *allInfoFileH = [NSString stringWithFormat:
+                              @"%@\n%@\n"
+                              "NS_ASSUME_NONNULL_BEGIN\n\n"
+                              "%@"
+                              "\nNS_ASSUME_NONNULL_END\n", noteInFileH, importInfoInFileH, codeInfoInFileH];
+    return allInfoFileH;
+}
+
+- (NSString *)allInfoFileM:(YBMFNode *)node {
+    NSString *noteInFileM = [self.config.fileNoteHander ybmf_fileNoteWithFileName:node.className fileType:YBMFFileNoteTypeM];
+    NSString *importInfoInFileM = [self.config.fileMHandler ybmf_importInfoWithNode:node];
+    NSString *codeInfoInFileM = [self.config.fileMHandler ybmf_codeInfoWithNode:node];
+    NSString *allInfoFileM = [NSString stringWithFormat:@"%@\n%@\n%@", noteInFileM, importInfoInFileM, codeInfoInFileM];
+    return allInfoFileM;
 }
 
 @end

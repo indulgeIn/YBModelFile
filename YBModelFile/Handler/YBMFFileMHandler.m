@@ -7,7 +7,7 @@
 //
 
 #import "YBMFFileMHandler.h"
-#import "YBMFConfig.h"
+#import "NSObject+YBMFConfig.h"
 
 @implementation YBMFFileMHandler
 
@@ -36,7 +36,7 @@
     
     //实现属性映射
     if (node.propertyMapper.count > 0) {
-        switch ([YBMFConfig shareConfig].framework) {
+        switch (self.ybmf_config.framework) {
             case YBMFFrameworkYY: [codeInfo appendString:@"+ (NSDictionary *)modelCustomPropertyMapper {\n"];
                 break;
             case YBMFFrameworkMJ: [codeInfo appendString:@"+ (NSDictionary *)mj_replacedKeyFromPropertyName {\n"];
@@ -58,7 +58,7 @@
     
     //实现容器元素映射
     if (node.containerMapper.count > 0) {
-        switch ([YBMFConfig shareConfig].framework) {
+        switch (self.ybmf_config.framework) {
             case YBMFFrameworkYY: [codeInfo appendString:@"+ (NSDictionary *)modelContainerPropertyGenericClass {\n"];
                 break;
             case YBMFFrameworkMJ: [codeInfo appendString:@"+ (NSDictionary *)mj_objectClassInArray {\n"];
@@ -79,9 +79,9 @@
     }
     
     //实现 NSCopying 协议
-    if ([YBMFConfig shareConfig].needCopying) {
+    if (self.ybmf_config.needCopying) {
         [codeInfo appendString:@"- (id)copyWithZone:(NSZone *)zone {\n"];
-        [codeInfo appendString:[NSString stringWithFormat:@"    typeof(self) one = [[%@ allocWithZone:zone] init];\n", node.className]];
+        [codeInfo appendString:@"    typeof(self) one = [[[self class] allocWithZone:zone] init];\n"];
         [node.children.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [codeInfo appendString:[NSString stringWithFormat:@"    one.%@ = self.%@;\n", obj, obj]];
         }];
@@ -90,8 +90,8 @@
     }
     
     //实现 NSCoding 协议
-    if ([YBMFConfig shareConfig].needCoding) {
-        switch ([YBMFConfig shareConfig].framework) {
+    if (self.ybmf_config.needCoding) {
+        switch (self.ybmf_config.framework) {
             case YBMFFrameworkYY: {
                 [codeInfo appendString:
                  @"- (instancetype)initWithCoder:(NSCoder *)aDecoder {\n"

@@ -24,13 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)ybmf_classNameWithPrefix:(nullable NSString *)prefix suffix:(nullable NSString *)suffix key:(id)key;
 
 /**
- 根据已知数组生成属性名
+ 根据已知数据生成属性名
 
  @param key json 中的 key
- @param node 目标节点
+ @param existKeys 已经存在的 keys
  @return 属性名
  */
-- (NSString *)ybmf_propertyNameWithKey:(id)key node:(YBMFNode *)node;
+- (NSString *)ybmf_propertyNameWithKey:(id)key existKeys:(NSArray *)existKeys;
 
 @end
 

@@ -44,6 +44,14 @@
     
     //解析微博的json
     [YBModelFile createFileWithName:@"WBTrends" data:@"weibo_0"];
+    
+    
+    //解析微博的json （带独有配置）
+    /*
+    YBMFConfig *config = [YBMFConfig defaultConfig];
+    config.fileNoteHander.ybmf_developer = @"hahaha";
+    [YBModelFile createFileWithName:@"WBTrends" data:@"weibo_0" config:config];
+    */
 }
 
 @end

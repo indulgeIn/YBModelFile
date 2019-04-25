@@ -7,8 +7,14 @@
 //
 
 #import "YBMFConfig.h"
+#import "NSObject+YBMFConfig.h"
 
 @implementation YBMFConfig
+
+//test
+- (void)dealloc {
+    NSLog(@"释放：%@", self);
+}
 
 + (instancetype)shareConfig {
 #if DEBUG
@@ -23,21 +29,33 @@
 #endif
 }
 
++ (instancetype)defaultConfig {
+    YBMFConfig *config = [[YBMFConfig alloc] initDefaults];
+    return config;
+}
+
 - (instancetype)initDefaults {
     self = [super init];
     if (self) {
-        self.fileSuffix = @"Model";
-        self.filePartitionMode = YBMFFilePartitionModeTogether;
-        self.ignoreType = YBMFIgnoreTypeMutable;
-        self.baseClass = NSObject.self;
-        self.framework = YBMFFrameworkYY;
-        self.needCopying = YES;
-        self.needCoding = YES;
-        self.nameHander = YBMFNameHandler.new;
-        self.fileNoteHander = YBMFFileNoteHandler.new;
-        self.fileHHandler = YBMFFileHHandler.new;
-        self.fileMHandler = YBMFFileMHandler.new;
-        self.codeForParentHandler = YBMFCodeForParentHandler.new;
+        _fileSuffix = @"Model";
+        _filePartitionMode = YBMFFilePartitionModeTogether;
+        _ignoreType = YBMFIgnoreTypeMutable;
+        _baseClass = NSObject.self;
+        _framework = YBMFFrameworkYY;
+        _needCopying = YES;
+        _needCoding = YES;
+        _nameHander = [YBMFNameHandler new];
+        _fileNoteHander = [YBMFFileNoteHandler new];
+        
+        YBMFFileHHandler *fileH = [YBMFFileHHandler new];
+        fileH.ybmf_config = self;
+        _fileHHandler = fileH;
+        
+        YBMFFileMHandler *fileM = [YBMFFileMHandler new];
+        fileM.ybmf_config = self;
+        _fileMHandler = fileM;
+        
+        _codeForParentHandler = [YBMFCodeForParentHandler new];
     }
     return self;
 }

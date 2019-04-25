@@ -13,22 +13,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YBModelFile : NSObject
 
-/**
- 生成 Model 文件
- 
- @param name 主 Model 文件名
- @param data 数据源 (字典/数组/json数据/json字符串/json文件名)
- */
 + (void)createFileWithName:(NSString *)name data:(id)data;
 
++ (void)createFileWithName:(NSString *)name data:(id)data config:(YBMFConfig *)config;
+
 /**
  生成 Model 文件
 
  @param name 主 Model 文件名
  @param data 数据源 (字典/数组/json数据/json字符串/json文件名)
- @param path 文件生成路径 (默认桌面)
+ @param config 配置 (默认为 [YBMFConfig shareConfig])
+ @param path 文件生成路径 (默认为桌面 YBModelFile-Workspace 文件夹)
  */
-+ (void)createFileWithName:(NSString *)name data:(id)data path:(nullable NSString *)path;
++ (void)createFileWithName:(NSString *)name data:(id)data config:(nullable YBMFConfig *)config path:(nullable NSString *)path ;
 
 @end
 

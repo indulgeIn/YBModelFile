@@ -161,7 +161,7 @@ static NSSet<NSString *> *YBClassVarsExceptPrefix(Class cls) {
     return tmp;
 }
 
-- (NSString *)ybmf_propertyNameWithKey:(id)key node:(nonnull YBMFNode *)node {
+- (NSString *)ybmf_propertyNameWithKey:(id)key existKeys:(nonnull NSArray *)existKeys {
     __block NSString *keyStr = [NSString stringWithFormat:@"%@", key];
     if (!keyStr) return @"";
     
@@ -190,7 +190,7 @@ static NSSet<NSString *> *YBClassVarsExceptPrefix(Class cls) {
     NSString *tmp = keyStr.copy;
     NSUInteger suf = 0;
     NSSet *illegalVars = YBClassVarsExceptPrefix([YBMFConfig shareConfig].baseClass);
-    while ([node.children.allKeys containsObject:tmp] || [illegalVars containsObject:tmp]) {
+    while ([existKeys containsObject:tmp] || [illegalVars containsObject:tmp]) {
         tmp = keyStr.copy;
         tmp = [tmp stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)++suf]];
     }

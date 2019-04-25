@@ -14,6 +14,8 @@
 		231F75332241E130005A59CB /* YBMFCodeForParentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 231F75322241E130005A59CB /* YBMFCodeForParentHandler.m */; };
 		231F7692224298A2005A59CB /* weibo_0.json in Resources */ = {isa = PBXBuildFile; fileRef = 231F7691224298A2005A59CB /* weibo_0.json */; };
 		233D643A2240AE2400B74D30 /* YBMFNameHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 233D64392240AE2400B74D30 /* YBMFNameHandler.m */; };
+		23949BD22271B74C00A65340 /* NSObject+YBMFConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 23949BD12271B74C00A65340 /* NSObject+YBMFConfig.m */; };
+		23949BDE2271C23300A65340 /* WBTrendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23949BDD2271C23300A65340 /* WBTrendsModel.m */; };
 		23AB8ADC223FD8F800C5849D /* YBMFNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 23AB8ADB223FD8F800C5849D /* YBMFNode.m */; };
 		23EB9F1F223F7D3800EE40FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EB9F1E223F7D3800EE40FE /* AppDelegate.m */; };
 		23EB9F22223F7D3800EE40FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EB9F21223F7D3800EE40FE /* ViewController.m */; };
@@ -41,6 +43,10 @@
 		231F7691224298A2005A59CB /* weibo_0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weibo_0.json; sourceTree = "<group>"; };
 		233D64382240AE2400B74D30 /* YBMFNameHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBMFNameHandler.h; sourceTree = "<group>"; };
 		233D64392240AE2400B74D30 /* YBMFNameHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YBMFNameHandler.m; sourceTree = "<group>"; };
+		23949BD02271B74C00A65340 /* NSObject+YBMFConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+YBMFConfig.h"; sourceTree = "<group>"; };
+		23949BD12271B74C00A65340 /* NSObject+YBMFConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YBMFConfig.m"; sourceTree = "<group>"; };
+		23949BDC2271C23300A65340 /* WBTrendsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBTrendsModel.h; sourceTree = "<group>"; };
+		23949BDD2271C23300A65340 /* WBTrendsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBTrendsModel.m; sourceTree = "<group>"; };
 		23AB8ADA223FD8F800C5849D /* YBMFNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBMFNode.h; sourceTree = "<group>"; };
 		23AB8ADB223FD8F800C5849D /* YBMFNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YBMFNode.m; sourceTree = "<group>"; };
 		23EB9F1A223F7D3800EE40FE /* YBModelFileDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YBModelFileDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +103,24 @@
 			path = Node;
 			sourceTree = "<group>";
 		};
+		23949BCF2271B73500A65340 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				23949BD02271B74C00A65340 /* NSObject+YBMFConfig.h */,
+				23949BD12271B74C00A65340 /* NSObject+YBMFConfig.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		23949BDB2271C23300A65340 /* WBTrendsModel3 */ = {
+			isa = PBXGroup;
+			children = (
+				23949BDC2271C23300A65340 /* WBTrendsModel.h */,
+				23949BDD2271C23300A65340 /* WBTrendsModel.m */,
+			);
+			path = WBTrendsModel3;
+			sourceTree = "<group>";
+		};
 		23EB9F11223F7D3800EE40FE = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +146,7 @@
 				23EB9F33223F7DBC00EE40FE /* YBModelFile */,
 				23EB9F1D223F7D3800EE40FE /* AppDelegate.h */,
 				23EB9F1E223F7D3800EE40FE /* AppDelegate.m */,
+				23949BDB2271C23300A65340 /* WBTrendsModel3 */,
 				23EB9F20223F7D3800EE40FE /* ViewController.h */,
 				23EB9F21223F7D3800EE40FE /* ViewController.m */,
 				231F753B22425FD3005A59CB /* PrefixHeader.pch */,
@@ -137,6 +162,7 @@
 		23EB9F33223F7DBC00EE40FE /* YBModelFile */ = {
 			isa = PBXGroup;
 			children = (
+				23949BCF2271B73500A65340 /* Helper */,
 				231F758B224281F3005A59CB /* Node */,
 				230CAA6E2240F7C200633F37 /* Handler */,
 				23EB9F34223F7DC500EE40FE /* YBModelFile.h */,
@@ -284,6 +310,8 @@
 				230CAA6D2240F56800633F37 /* YBMFConfig.m in Sources */,
 				23EB9F22223F7D3800EE40FE /* ViewController.m in Sources */,
 				23EB9F2D223F7D3900EE40FE /* main.m in Sources */,
+				23949BD22271B74C00A65340 /* NSObject+YBMFConfig.m in Sources */,
+				23949BDE2271C23300A65340 /* WBTrendsModel.m in Sources */,
 				231F75302241D30B005A59CB /* YBMFFileMHandler.m in Sources */,
 				23EB9F1F223F7D3800EE40FE /* AppDelegate.m in Sources */,
 				231F752D2241D2FD005A59CB /* YBMFFileHHandler.m in Sources */,

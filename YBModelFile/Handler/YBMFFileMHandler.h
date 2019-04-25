@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol YBMFFileMHandler <NSObject>
 
+/** 方法之间是否空行 */
+@property (nonatomic, assign) BOOL ybmf_skipLine;
+
 - (NSString *)ybmf_importInfoWithNode:(YBMFNode *)node;
 
 - (NSString *)ybmf_codeInfoWithNode:(YBMFNode *)node;
-
-/** 方法之间是否空行 */
-@property (nonatomic, assign) BOOL ybmf_skipLine;
 
 @end
 
