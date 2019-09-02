@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)ybmf_propertyNameWithKey:(id)key existKeys:(NSArray *)existKeys;
 
+/* 是否需要类名判重（默认为 NO） */
+@property (nonatomic, assign) BOOL ybmf_shouldAvoidClassRepeat;
+
 @end
 
 /**

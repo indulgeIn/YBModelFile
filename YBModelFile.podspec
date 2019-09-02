@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "YBModelFile"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "iOS 效率工具：自动生成 Model 文件（数据模型） /  iOS efficiency tool : create data model files automatically"
   s.description  = <<-DESC
   					iOS 效率工具：自动生成 Model 文件（数据模型） /  iOS efficiency tool : create data model files automatically

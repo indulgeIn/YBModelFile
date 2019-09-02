@@ -133,6 +133,8 @@ static NSSet<NSString *> *YBClassVarsExceptPrefix(Class cls) {
 
 #pragma mark - <YBMFNameHandler>
 
+@synthesize ybmf_shouldAvoidClassRepeat = _ybmf_shouldAvoidClassRepeat;
+
 - (NSString *)ybmf_classNameWithPrefix:(NSString *)prefix suffix:(NSString *)suffix key:(id)key {
     NSString *keyStr = [NSString stringWithFormat:@"%@", key];
     if (!keyStr) keyStr = @"";
@@ -151,11 +153,13 @@ static NSSet<NSString *> *YBClassVarsExceptPrefix(Class cls) {
     
     //类名判重
     NSString *tmp = [NSString stringWithFormat:@"%@%@%@", prefix, keyStr, suffix];
-    NSUInteger suf = 0;
-    while (NSClassFromString(tmp) && ![self.classNames containsObject:tmp]) {
-        tmp = [NSString stringWithFormat:@"%@%@", prefix, keyStr];
-        tmp = [tmp stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)++suf]];
-        tmp = [tmp stringByAppendingString:suffix];
+    if (self.ybmf_shouldAvoidClassRepeat) {
+        NSUInteger suf = 0;
+        while (NSClassFromString(tmp) && ![self.classNames containsObject:tmp]) {
+            tmp = [NSString stringWithFormat:@"%@%@", prefix, keyStr];
+            tmp = [tmp stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)++suf]];
+            tmp = [tmp stringByAppendingString:suffix];
+        }
     }
     [self.classNames addObject:tmp];
     return tmp;
