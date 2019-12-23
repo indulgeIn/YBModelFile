@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/github/license/indulgeIn/YBModelFile.svg)](https://github.com/indulgeIn/YBModelFile)&nbsp;
 
 
-iOS 效率工具：自动生成 Model 文件（数据模型） / iOS efficiency tool : create data model files automatically
+根据 JSON 自动生成 Model 文件（数据模型）
 
 技术原理博客：[iOS 效率工具：自动生成 Model 文件](https://www.jianshu.com/p/f30cf05054c6)
 
@@ -27,7 +27,7 @@ iOS 效率工具：自动生成 Model 文件（数据模型） / iOS efficiency 
 
 ### CocoaPods
 
-1. 在 Podfile 中添加 `pod 'YBModelFile'`。
+1. 在 Podfile 中添加 `pod 'YBModelFile', :configurations => ['Debug']`。
 2. 执行 `pod install` 或 `pod update`。
 3. 导入 `<YBModelFile/YBModelFile.h>`。
 
